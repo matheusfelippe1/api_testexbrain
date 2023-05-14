@@ -5,16 +5,14 @@ import java.time.LocalDateTime;
 public class Venda {
 
     private Long id;
-    private LocalDateTime dataVenda;
+    private LocalDateTime dataVenda = LocalDateTime.now();
     private Double valor;
     private Vendedor vendedor;
 
-    public Venda() {
-
+    public Venda(String dúvida, String dúvidaComSpring, Vendedor vendedor) {
     }
 
-    public Venda(LocalDateTime dataVenda, double valor, Vendedor vendedor) {
-        this.dataVenda = dataVenda;
+    public Venda(double valor, Vendedor vendedor) {
         this.valor = valor;
         this.vendedor = vendedor;
     }

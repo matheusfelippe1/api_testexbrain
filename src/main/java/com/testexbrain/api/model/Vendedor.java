@@ -5,7 +5,7 @@ public class Vendedor {
     private Long id;
     private String nome;
 
-    public Vendedor() {
+    public Vendedor(String string, String programação) {
 
     }
 
