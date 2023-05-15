@@ -3,6 +3,7 @@ package com.testexbrain.api.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "venda")
@@ -60,4 +61,16 @@ public class Venda {
         this.vendedor = vendedor;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Venda venda = (Venda) o;
+        return Objects.equals(id, venda.id) && Objects.equals(dataVenda, venda.dataVenda) && Objects.equals(valor, venda.valor) && Objects.equals(vendedor, venda.vendedor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dataVenda, valor, vendedor);
+    }
 }
