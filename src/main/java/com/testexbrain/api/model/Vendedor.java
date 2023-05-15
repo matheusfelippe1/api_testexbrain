@@ -1,12 +1,22 @@
 package com.testexbrain.api.model;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "vendedor")
 public class Vendedor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @OneToMany(mappedBy = "vendedor")
+    private List<Venda> vendas = new ArrayList<>();
 
-    public Vendedor(String string, String programação) {
-
+    public Vendedor() {
     }
 
     public Vendedor(String nome) {
@@ -27,6 +37,12 @@ public class Vendedor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
 
 }

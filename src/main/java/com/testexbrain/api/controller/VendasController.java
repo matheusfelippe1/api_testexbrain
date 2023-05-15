@@ -3,6 +3,8 @@ package com.testexbrain.api.controller;
 import com.testexbrain.api.controller.dto.VendaDto;
 import com.testexbrain.api.model.Venda;
 import com.testexbrain.api.model.Vendedor;
+import com.testexbrain.api.repository.VendaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,12 +15,13 @@ import java.util.List;
 @RestController
 public class VendasController {
 
-    @RequestMapping("/vendas")
-    //@ResponseBody
-    public List<VendaDto> lista() {
-        Venda venda = new Venda("Nome", "Matheus", new Vendedor("String", "Programação"));
+    @Autowired
+    private VendaRepository vendaRepository;
 
-       //return Arrays.asList(venda, venda, venda);
-        return VendaDto.converter(Arrays.asList(venda, venda, venda));
+    @RequestMapping("/vendas")
+    public List<VendaDto> lista(String nomeCurso) {
+        System.out.println(nomeCurso);
+        List<Venda> vendas = vendaRepository.findAll();
+              return VendaDto.converter(vendas);
     }
 }

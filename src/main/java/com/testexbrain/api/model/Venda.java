@@ -1,20 +1,31 @@
 package com.testexbrain.api.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "venda")
 public class Venda {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dataVenda = LocalDateTime.now();
     private Double valor;
+    @ManyToOne
     private Vendedor vendedor;
 
-    public Venda(String dúvida, String dúvidaComSpring, Vendedor vendedor) {
+    public Venda() {
+
     }
 
-    public Venda(double valor, Vendedor vendedor) {
+    public Venda(Double valor){
         this.valor = valor;
-        this.vendedor = vendedor;
+    }
+
+    public Venda(String nome, String matheus, Vendedor vendedor) {
+
     }
 
     public Long getId() {

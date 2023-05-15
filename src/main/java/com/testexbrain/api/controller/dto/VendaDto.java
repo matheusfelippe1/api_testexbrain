@@ -1,6 +1,7 @@
 package com.testexbrain.api.controller.dto;
 
 import com.testexbrain.api.model.Venda;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ public class VendaDto {
 
     private Long id;
     private LocalDateTime dataVenda;
-    private double valor;
+    private Double valor;
     private Long idVendedor;
     private String nomeVendedor;
 
@@ -28,7 +29,7 @@ public class VendaDto {
     public Long getId() {
         return id;
     }
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
     public Long getIdVendedor() {
