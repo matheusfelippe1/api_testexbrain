@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface VendedorRepository extends JpaRepository<Vendedor, Long> {
 
+    List<Vendedor> findByNome(String nomeVendedor);
 }
