@@ -20,6 +20,4 @@ public class Vendedor {
     public Vendedor(String nome) {
         this.nome = nome;
     }
-
-//
 }

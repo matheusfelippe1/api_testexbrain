@@ -1,0 +1,1 @@
+INSERT INTO VENDEDOR(id, nome) VALUES ('1', 'Felippe');

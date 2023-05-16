@@ -1,21 +1,26 @@
 package com.testexbrain.api.controller;
 
+import com.testexbrain.api.dto.VendedorDto;
 import com.testexbrain.api.model.Vendedor;
-import org.springframework.stereotype.Controller;
+import com.testexbrain.api.repository.VendedorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
-@Controller
+@RestController
 public class VendedorController {
+
+    @Autowired
+    private VendedorRepository vendedorRepository;
 
     @RequestMapping("/vendedores")
     @ResponseBody
-    public List<Vendedor> lista(){
-        Vendedor vendedor = new Vendedor("String nome");
-        return Arrays.asList(vendedor, vendedor, vendedor);
+    public List<VendedorDto> lista(){
+        List<Vendedor> vendedores = vendedorRepository.findAll();
+        return VendedorDto.converter(vendedores);
     }
 
 }
