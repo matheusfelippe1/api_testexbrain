@@ -18,9 +18,14 @@ public class VendedorController {
 
     @RequestMapping("/vendedores")
     @ResponseBody
-    public List<VendedorDto> lista(){
-        List<Vendedor> vendedores = vendedorRepository.findAll();
-        return VendedorDto.converter(vendedores);
+    public List<VendedorDto> lista(String nomeVendedor){
+        if (nomeVendedor == null){
+            List<Vendedor> vendedores = vendedorRepository.findAll();
+            return VendedorDto.converter(vendedores);
+        } else {
+            List<Vendedor> vendedores = vendedorRepository.findAll();
+            return VendedorDto.converter(vendedores);
+        }
     }
 
 }
