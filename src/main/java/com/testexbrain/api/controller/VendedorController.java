@@ -4,6 +4,7 @@ import com.testexbrain.api.dto.VendedorDto;
 import com.testexbrain.api.form.VendedorForm;
 import com.testexbrain.api.model.Vendedor;
 import com.testexbrain.api.repository.VendedorRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class VendedorController {
     }
 
     @PostMapping
-    public ResponseEntity<VendedorDto> cadastrar(@RequestBody VendedorForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<VendedorDto> cadastrar(@RequestBody @Valid VendedorForm form, UriComponentsBuilder uriBuilder){
         Vendedor vendedor = form.converter(vendedorRepository);
         vendedorRepository.save(vendedor);
 
