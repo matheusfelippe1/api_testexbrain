@@ -5,8 +5,11 @@ import com.testexbrain.api.form.VendedorForm;
 import com.testexbrain.api.model.Vendedor;
 import com.testexbrain.api.repository.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -28,7 +31,12 @@ public class VendedorController {
     }
 
     @PostMapping
-    public void cadastrar(@RequestBody VendedorForm form){
+    public ResponseEntity<VendedorDto> cadastrar(@RequestBody VendedorForm form, UriComponentsBuilder uriBuilder){
+        Vendedor vendedor = form.converter(vendedorRepository);
+        vendedorRepository.save(vendedor);
+
+        URI uri = uriBuilder.path("/vendedores/{id}").buildAndExpand(vendedor.getId()).toUri();
+        return ResponseEntity.created(uri).body(new VendedorDto(vendedor));
     }
 
 }

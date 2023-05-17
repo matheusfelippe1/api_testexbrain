@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +15,8 @@ public class VendedorForm {
 
     private String nome;
 
-    public Vendedor converter(VendedorRepository repository) {
+    public Vendedor converter(VendedorRepository vendedorRepository) {
+        List<Vendedor> vendedor = vendedorRepository.findByNome(nome);
         return new Vendedor(nome);
     }
 }
