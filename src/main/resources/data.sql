@@ -1,1 +1,1 @@
-INSERT INTO VENDEDOR(id, nome) VALUES ('1', 'Felippe');
+INSERT INTO VENDEDOR(nome) VALUES ('Felippe');

@@ -7,6 +7,7 @@ import com.testexbrain.api.repository.VendedorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -38,6 +39,27 @@ public class VendedorController {
 
         URI uri = uriBuilder.path("/vendedores/{id}").buildAndExpand(vendedor.getId()).toUri();
         return ResponseEntity.created(uri).body(new VendedorDto(vendedor));
+    }
+
+    @GetMapping("/{id}")
+    public VendedorDto detalhar(@PathVariable Long id){
+        Vendedor vendedor = vendedorRepository.getReferenceById(id);
+        return new VendedorDto(vendedor);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable Long id){
+        Vendedor vendedor = vendedorRepository.getReferenceById(id);
+        vendedorRepository.delete(vendedor);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public VendedorDto alterar(@PathVariable Long id, @RequestBody @Valid VendedorForm form){
+        Vendedor vendedor = vendedorRepository.getReferenceById(id);
+        vendedor.setNome(form.getNome());
+        vendedorRepository.save(vendedor);
+        return new VendedorDto(vendedor);
     }
 
 }
