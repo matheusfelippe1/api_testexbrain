@@ -1,7 +1,7 @@
 package com.testexbrain.api.controller;
 
-import com.testexbrain.api.dto.VendedorDto;
-import com.testexbrain.api.form.VendedorForm;
+import com.testexbrain.api.controller.dto.VendedorDto;
+import com.testexbrain.api.controller.form.VendedorForm;
 import com.testexbrain.api.model.Vendedor;
 import com.testexbrain.api.repository.VendedorRepository;
 import jakarta.validation.Valid;
