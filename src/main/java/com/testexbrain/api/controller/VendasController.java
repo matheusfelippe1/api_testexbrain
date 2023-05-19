@@ -38,7 +38,7 @@ public class VendasController {
 
     @PostMapping
     public ResponseEntity<VendaDto> cadastrar(@RequestBody @Valid VendaForm form, UriComponentsBuilder uriBuilder){
-        Venda venda = form.converter(vendaRepository);
+        Venda venda = form.converter(vendedorRepository);
         vendaRepository.save(venda);
 
         URI uri = uriBuilder.path("/vendas/{id}").buildAndExpand(venda.getId()).toUri();
@@ -62,6 +62,7 @@ public class VendasController {
     public VendaDto alterar(@PathVariable Long id, @RequestBody @Valid VendaForm form){
         Venda venda = vendaRepository.getReferenceById(id);
         venda.setId(form.getIdVendedor());
+        venda.setValor(form.getValor());
         vendaRepository.save(venda);
         return new VendaDto(venda);
     }
